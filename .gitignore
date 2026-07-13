@@ -1,0 +1,51 @@
+# macOS 资源分叉垃圾
+._*
+.DS_Store
+
+# Node 依赖（运行时按需安装）
+node_modules/
+package-lock.json
+
+# 运行时产物
+output/
+tmp/
+
+# 注意：sign.key 为签名产物，本 skill 需随包保留，故不忽略
+*.key
+!*.public.key
+id_rsa
+id_rsa.*
+id_ed25519
+id_ed25519.*
+*.pem
+*.p12
+*.pfx
+*.keystore
+**/certs/*.key
+**/secrets/
+.env
+.env.*
+!.env.example
+*.token
+*token*.json
+.secrets/
+Thumbs.db
+*.swp
+*~
+.idea/
+.vscode/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+*.log
+dist/
+build/
+.skill-data/
+.cache/
+sign.key
+.install-source.json
+skill_meta.json
+*.json.md
