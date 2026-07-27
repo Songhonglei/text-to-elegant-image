@@ -2,13 +2,13 @@
 
 适用：AI 工具介绍、内部产品手册、工作方法论、企业内部分享。
 
-**升级亮点（v3 · Apple HIG x 小红书蓝）：** 全面对齐 AICowork 真实设计系统——苹果灰白背景 `#f5f5f7`、精确小红书蓝 `#0066cc`、1.5px 精致边框、`#1d1d1f` 苹果同款深黑文字、神经网络节点背景（72节点 `rgba(0,102,204,0.35)`）、磨砂玻璃 Hero 卡片、Eyebrow 全大写宽字距、clamp 响应式字号。
+**升级亮点（v3 · Apple HIG 风格）：** 对齐苹果设计语言的协作工具视觉——苹果灰白背景 `#f5f5f7`、科技蓝 `#0066cc`、1.5px 精致边框、`#1d1d1f` 苹果同款深黑文字、神经网络节点背景（72节点 `rgba(0,102,204,0.35)`）、磨砂玻璃 Hero 卡片、Eyebrow 全大写宽字距、clamp 响应式字号。
 
 ```css
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-    /* 品牌蓝（小红书蓝，精确值） */
+    /* 品牌蓝（科技蓝） */
     --blue:        #0066cc;
     --blue-soft:   #0077ed;
     --blue-light:  rgba(0, 102, 204, 0.06);
@@ -45,7 +45,7 @@ body {
     -webkit-font-smoothing: antialiased;
     margin: 0; padding: 0;
     line-height: 1.6;
-    /* 神经网络节点背景：72节点分布，rgba(0,102,204) 小红书蓝 */
+    /* 神经网络节点背景：72节点分布，rgba(0,102,204) 科技蓝 */
     background-image:
         url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Ccircle cx='60' cy='60' r='2.2' fill='rgba(0%2C102%2C204%2C0.35)'/%3E%3Cline x1='60' y1='60' x2='120' y2='0'   stroke='rgba(0%2C102%2C204%2C0.07)' stroke-width='1'/%3E%3Cline x1='60' y1='60' x2='0'   y2='120' stroke='rgba(0%2C102%2C204%2C0.07)' stroke-width='1'/%3E%3Cline x1='60' y1='60' x2='120' y2='120' stroke='rgba(0%2C102%2C204%2C0.05)' stroke-width='1'/%3E%3C/svg%3E");
     background-size: 120px 120px;
