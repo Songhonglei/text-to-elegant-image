@@ -28,6 +28,9 @@ body {
     max-width: 560px;
     margin: 0 auto;
     padding: 48px 36px;
+    background: var(--t2e-surface, #F0EDE4);
+    border: 1px solid var(--rule, #1A1A1A);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
 }
 /* 顶部报头 */
 .masthead {

@@ -31,6 +31,10 @@ body {
     max-width: 560px;
     margin: 0 auto;
     padding: 36px 28px;
+    background: var(--t2e-surface, #1E1408);
+    border: 1px solid var(--t2e-border, rgba(184,115,51,0.35));
+    border-radius: 6px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(184,115,51,0.1);
 }
 /* 铆钉边框卡片 */
 .rivet-card {

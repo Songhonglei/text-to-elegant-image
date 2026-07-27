@@ -35,6 +35,9 @@ body {
     max-width: 560px;
     margin: 0 auto;
     padding: 32px 28px;
+    background: var(--t2e-surface, #111111);
+    border: 1px solid var(--border, rgba(255,107,0,0.18));
+    box-shadow: 0 0 32px rgba(255,107,0,0.06), 0 8px 32px rgba(0,0,0,0.4);
 }
 .terminal-header {
     display: flex;

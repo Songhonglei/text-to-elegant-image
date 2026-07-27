@@ -67,6 +67,10 @@ body::before {
     padding: 44px 28px;
     position: relative;
     z-index: 1;
+    background: var(--surface, #FFFFFF);
+    border: 1px solid var(--border, rgba(0,0,0,0.09));
+    border-radius: var(--radius-lg, 18px);
+    box-shadow: 0 2px 24px rgba(0,0,0,0.06);
 }
 
 /* ── Hero 区：磨砂玻璃大卡片 ── */

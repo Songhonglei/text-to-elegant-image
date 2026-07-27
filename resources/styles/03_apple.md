@@ -24,6 +24,10 @@ body {
     max-width: 560px;
     margin: 0 auto;
     padding: 40px 24px;
+    background: var(--t2e-surface, #FFFFFF);
+    border: 1px solid var(--t2e-border, rgba(0,0,0,0.08));
+    border-radius: 20px;
+    box-shadow: 0 2px 24px rgba(0,0,0,0.06);
 }
 .apple-card {
     background: rgba(255,255,255,0.85);

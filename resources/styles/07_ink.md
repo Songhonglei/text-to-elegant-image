@@ -31,6 +31,9 @@ body {
     max-width: 540px;
     margin: 0 auto;
     padding: 60px 48px;
+    background: var(--t2e-surface, #F5F0E8);
+    border: 1px solid var(--border, rgba(42,32,24,0.15));
+    box-shadow: 0 4px 32px rgba(42,32,24,0.1);
 }
 .scroll-header {
     text-align: center;

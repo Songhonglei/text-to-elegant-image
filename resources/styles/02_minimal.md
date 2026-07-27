@@ -27,6 +27,10 @@ body {
     max-width: 560px;
     margin: 0 auto;
     padding: 60px 40px;
+    background: var(--t2e-surface, #FFFFFF);
+    border: 1px solid var(--t2e-border, #EAEAEA);
+    border-radius: 18px;
+    box-shadow: 0 2px 24px rgba(0,0,0,0.04);
 }
 .title-section {
     text-align: center;

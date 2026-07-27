@@ -29,6 +29,10 @@ body {
     margin: 0 auto;
     padding: 40px 32px;
     position: relative;
+    background: var(--t2e-surface, #0C1220);
+    border: 1px solid var(--t2e-border, rgba(0,240,255,0.25));
+    border-radius: 16px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.5);
 }
 .glass-card {
     background: rgba(12, 18, 32, 0.75);

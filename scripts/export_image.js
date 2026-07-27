@@ -5,12 +5,14 @@ const { execSync } = require('child_process');
 
 /**
  * 参数解析
- * 用法: node export_image.js <html> <output.png> [width] [--author "作者信息" | --no-footer] [--fixed-height <px>] [--frame <px>]
+ * 用法: node export_image.js <html> <output.png> [width] [--author "作者信息" | --no-footer] [--fixed-height <px>] [--frame <px>] [--flat]
  *
  * --author "文字"       在图片底部注入自定义 footer（覆盖 HTML 中已有的 .footer 内容）
  * --no-footer           完全移除 footer 区域
  * --fixed-height <px>   固定版式高度（金句海报/封面卡 3:4，如 width=600 配 --fixed-height 800），跳过自适应测量和相框边距（这两种模式容器本身占满画布，自带内部留白）
  * --frame <px>          相框边距：画布在内容宽度基础上左右各加 <px>，并强制统一 body 上下 padding 为同值，实现四边相等的"相框感"。长图模式默认 32px；传 0 可关闭
+ * --flat                关闭卡片背景：所有 19 种风格默认在 .container 上加一层卡片背景（background/border/圆角/阴影），传此参数移除，内容直接融入 body 背景（老版本的扁平效果）。
+ *                        ⚠️ 玻璃拟态风（11_glass）的卡片背景是核心视觉效果本身，传 --flat 会让毛玻璃质感完全消失，不建议对该风格使用。
  * 不传任何 footer 参数：保留 HTML 原有内容（AI 生成时已按规范写入）
  */
 const args = process.argv.slice(2);
@@ -23,10 +25,13 @@ let authorText  = null;   // null = 不注入，使用 HTML 原有内容
 let noFooter    = false;
 let fixedHeight = null;   // 固定版式高度（海报/封面卡 3:4），传入后跳过自适应测量
 let frameArg    = null;   // 用户显式指定的相框边距（未指定则按模式给默认值）
+let flatMode    = false;  // true = 关闭卡片背景，恢复扁平效果
 
 for (let i = 3; i < args.length; i++) {
     if (args[i] === '--no-footer') {
         noFooter = true;
+    } else if (args[i] === '--flat') {
+        flatMode = true;
     } else if (args[i] === '--author' && args[i + 1]) {
         authorText = args[i + 1];
         i++;
@@ -46,7 +51,7 @@ const frame = fixedHeight ? 0 : (frameArg !== null ? frameArg : 32);
 const width = designWidth + frame * 2;   // 实际画布宽度 = 内容设计宽度 + 左右相框
 
 if (!inputHtml || !outputImg) {
-    console.error('Usage: node export_image.js <html> <output.png> [width] [--author "文字" | --no-footer] [--fixed-height <px>] [--frame <px>]');
+    console.error('Usage: node export_image.js <html> <output.png> [width] [--author "文字" | --no-footer] [--fixed-height <px>] [--frame <px>] [--flat]');
     process.exit(1);
 }
 
@@ -119,6 +124,22 @@ if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir, { recursive: true });
                 document.body.style.setProperty('box-sizing', 'border-box', 'important');
             }, frame);
             console.log(`[INFO] 相框边距: ${frame}px（四边统一，画布宽度 ${width}px = 内容 ${designWidth}px + 边距 ${frame}px×2）`);
+        }
+
+        // ── 卡片背景开关：--flat 时移除 .container 的卡片视觉（默认打开，不传即保留风格 CSS 自带的卡片背景）──
+        // 19 种风格的 .container 均自带 background/border/border-radius/box-shadow（卡片浮于 body 背景之上）。
+        // --flat 用于恢复老版本的扁平通栏效果：内容直接融入 body 背景，无卡片边界。
+        if (flatMode) {
+            await page.evaluate(() => {
+                const container = document.querySelector('.container');
+                if (container) {
+                    container.style.setProperty('background', 'transparent', 'important');
+                    container.style.setProperty('border', 'none', 'important');
+                    container.style.setProperty('border-radius', '0', 'important');
+                    container.style.setProperty('box-shadow', 'none', 'important');
+                }
+            });
+            console.log('[INFO] --flat 模式：已移除 .container 卡片背景');
         }
 
         // ── Footer 注入逻辑 ──────────────────────────────────

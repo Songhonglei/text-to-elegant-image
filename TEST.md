@@ -4,7 +4,7 @@
 
 ```yaml
 skill_name: text-to-elegant-image
-version: "1.1.0"
+version: "1.2.0"
 maintainer: "text-to-elegant-image"
 ```
 

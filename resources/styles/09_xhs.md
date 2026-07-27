@@ -53,6 +53,10 @@ body {
     max-width: 560px;
     margin: 0 auto;
     padding: 48px 36px;
+    background: var(--t2e-surface, #FFF5F7);
+    border: 1px solid var(--t2e-border, rgba(255,36,66,0.28));
+    border-radius: 20px;
+    box-shadow: 0 4px 28px rgba(255,36,66,0.08);
 }
 /* 标题区 */
 .xhs-header {
@@ -209,6 +213,10 @@ body {
     max-width: 560px;
     margin: 0 auto;
     padding: 44px 32px;
+    background: var(--t2e-surface, #FFF5F7);
+    border: 1px solid var(--t2e-border, rgba(255,36,66,0.28));
+    border-radius: 20px;
+    box-shadow: 0 4px 28px rgba(255,36,66,0.08);
 }
 /* 标题区（活泼版） */
 .xhs-header {

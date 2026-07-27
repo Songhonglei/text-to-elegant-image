@@ -8,7 +8,7 @@ description: >
 
 # Text to Elegant Image
 
-- **Version**: 1.1.0
+- **Version**: 1.2.0
 - **License**: MIT
 - **Author**: Evan Song · [github.com/Songhonglei](https://github.com/Songhonglei)
 - **Repository**: https://github.com/Songhonglei/text-to-elegant-image
@@ -130,6 +130,7 @@ node scripts/export_image.js <html> <output.png> 600 --fixed-height 800
 
 > 长图模式（默认）不传 `--fixed-height`，脚本自动测量 `.container` 真实高度并裁掉底部多余空白。
 > **相框边距**：长图模式默认给画布四边加 32px 统一相框（左右由加宽画布 + `margin:auto` 生成，上下强制覆盖 body padding），四边等距、不再左右贴边——**无需手动传参**。需要时可用 `--frame <px>` 自定义边距（如 `--frame 48`），或 `--frame 0` 关闭相框回到内容贴边。固定版式（`--fixed-height`）容器本身占满画布、自带内部留白，会自动忽略 `--frame`。
+> **卡片背景**：18 种风格的 `.container` 均默认带卡片视觉（背景色 + 描边 + 圆角/阴影，各风格取自己的色系与气质，如赛博风霓虹描边、水墨风纸感边框、莫兰迪风纯色块），配合相框边距形成“卡片浮于画布”的装裱效果——**无需手动传参，默认打开**。想要老版本的扁平通栏效果（内容直接融入背景、无卡片边界）时传 `--flat` 关闭：`node scripts/export_image.js <html> <output.png> 560 --flat`。⚠️ 玻璃拟态风（11_glass）的卡片背景是毛玻璃质感本身，`--flat` 会让它的核心视觉效果消失，不建议对该风格使用。
 > 封面卡建议加右上/右下柔光晕装饰球（`radial-gradient` + 绝对定位）平衡左对齐留白，避免右侧大片空白。
 
 ## 执行流程
@@ -264,4 +265,4 @@ node <skill目录>/scripts/export_image.js \
 |------|------|
 | `scripts/setup.sh` | 依赖检测（Node/Chrome/puppeteer-core），缺 puppeteer-core 时静默安装 |
 | `scripts/check_emoji.py` | 截图前 emoji 检查，FAIL 时输出字符与行号 |
-| `scripts/export_image.js` | Puppeteer 截图导出：字体等待 + 高度精确裁剪 + 四边相框边距 + footer 注入/移除 |
+| `scripts/export_image.js` | Puppeteer 截图导出：字体等待 + 高度精确裁剪 + 四边相框边距 + 卡片背景开关(--flat) + footer 注入/移除 |

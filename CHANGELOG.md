@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2026-07-27
+
+### Added
+
+- **Card-style backgrounds on every style**: all 18 styles' `.container` now ship a themed card background (background color + border + radius/shadow, matching each style's own palette — neon-outlined for cyberpunk, paper-textured hairline for ink-scroll, etc.), giving a consistent "card floating on canvas" look paired with the frame padding. On by default, no flag required.
+- **`--flat` flag**: opt out of the card background to restore the previous flat, edge-to-edge look (`node scripts/export_image.js <html> <output.png> 560 --flat`). Not recommended for the glassmorphism style, whose frosted-glass card *is* the core visual effect.
+
 ## [1.1.0] - 2026-07-27
 
 ### Added
