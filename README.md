@@ -6,10 +6,15 @@ Generates a self-contained HTML file and renders it to a crisp PNG via headless 
 
 ## Features
 
-- **18 built-in visual styles** — Cyberpunk/Tech, Minimalist, Apple Premium, Cowork Light-Tech, Newspaper, Bloomberg Terminal, Ink Scroll, Steampunk, XiaoHongShu/REDNote, Morandi, Glassmorphism, Palace, Fresh, Earthy, Dreamy, Macaron, Carbon, Vivid.
+- **18 built-in visual styles** — Cyberpunk/Tech, Minimalist, Apple Premium, Cowork Light-Tech, Newspaper, Bloomberg Terminal, Ink Scroll, Steampunk, XiaoHongShu/REDNote, Morandi, Glassmorphism, Palace, Fresh, Earthy, Dreamy, Macaron, Carbon, Vivid — one self-contained file per style under `resources/styles/`.
+- **Visualization component library** — KPI cards, progress bars, comparison bars, donut charts, flow steps, timelines (`resources/components.css`), themed per style via `--t2e-*` CSS variables.
+- **Signature web-font injection** — 6 curated display fonts (public Google Fonts CDN) wired into matching styles, with system-font fallback so rendering never blocks.
+- **Poster & cover layouts** — fixed 3:4 (600×800) quote-poster / cover-card modes via `--fixed-height 800`, alongside the default auto-height long-image mode.
+- **Frame padding** — uniform 32px canvas frame on all four edges by default; tune with `--frame <px>` or disable with `--frame 0`.
 - **High-DPI output** — 2× `deviceScaleFactor` for retina-sharp PNGs.
 - **Auto height cropping** — measures the real content height and trims trailing whitespace precisely.
-- **No external assets** — icons are pure CSS/inline SVG; nothing loads over the network, so rendering never breaks.
+- **Scripted emoji check** — `scripts/check_emoji.py` catches emoji before screenshotting (headless Chrome renders them as tofu boxes).
+- **No external assets** — icons are pure CSS/inline SVG; the only allowed network resource is the public font CDN (with fallback).
 - **Cross-platform Chrome detection** — Linux / macOS / WSL, no manual config.
 - **Configurable output dir** — via `T2EI_OUTPUT_DIR` env var (defaults to `./output`).
 - **Footer control** — default footer, custom author line, or no footer.
@@ -34,7 +39,7 @@ bash scripts/setup.sh
 node scripts/export_image.js /path/to/page.html ./output/card.png 600
 ```
 
-As an AI-agent skill, point your agent at `SKILL.md` — it describes the full workflow (parse content → pick a style from `resources/styles_reference.md` → generate HTML → screenshot).
+As an AI-agent skill, point your agent at `SKILL.md` — it describes the full workflow (parse content → pick a style from `resources/styles/` → generate HTML → emoji check → screenshot).
 
 ## Output directory
 
@@ -50,7 +55,7 @@ export T2EI_OUTPUT_DIR="$HOME/my-images"   # optional, persist in ~/.bashrc
 
 ## Styles
 
-All 18 styles ship with complete CSS + HTML skeletons in [`resources/styles_reference.md`](./resources/styles_reference.md). Each uses a `.container` base plus a namespaced class set (e.g. `.mo-*` for Morandi, `.gl-*` for Glass), so styles never collide.
+Each of the 18 styles lives in its own file under [`resources/styles/`](./resources/styles/) (`01_cyberpunk.md` … `18_vivid.md`), containing complete CSS, an HTML skeleton, component color-variable mapping, optional font injection and signature decorations. [`resources/styles/_BASE.md`](./resources/styles/_BASE.md) holds the shared HTML skeleton and typography rules. Each style uses a `.container` base plus a namespaced class set (e.g. `.mo-*` for Morandi, `.gl-*` for Glass), so styles never collide.
 
 > ⚠️ **No emoji in generated HTML** — headless Chrome lacks color-emoji fonts and renders them as tofu boxes. Use CSS shapes / inline SVG instead. (Enforced in `SKILL.md`.)
 
@@ -75,6 +80,12 @@ MIT — see [LICENSE](./LICENSE).
 Evan Song · [github.com/Songhonglei](https://github.com/Songhonglei)
 
 ## Changelog
+
+See [CHANGELOG.md](./CHANGELOG.md) for details.
+
+### v1.1.0 (2026-07-27)
+
+- Architecture: split the single style reference into 18 per-style files (`resources/styles/`), added visualization component library (`resources/components.css`), signature web-font injection, `--frame` canvas padding, adaptive screenshot height, fixed 3:4 poster/cover layouts (`--fixed-height`), and scripted emoji checking (`scripts/check_emoji.py`).
 
 ### v1.0.0 (2026-07-13)
 
