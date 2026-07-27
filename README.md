@@ -59,7 +59,10 @@ Each of the 18 styles lives in its own file under [`resources/styles/`](./resour
 
 > ⚠️ **No emoji in generated HTML** — headless Chrome lacks color-emoji fonts and renders them as tofu boxes. Use CSS shapes / inline SVG instead. (Enforced in `SKILL.md`.)
 
+📄 **Full render verification + `--frame` / `--flat` / `--fixed-height` parameter deep-dive (bilingual EN/中文):** see [`docs/VERIFICATION.md`](./docs/VERIFICATION.md).
+
 ## Image delivery
+
 
 This open-source edition focuses purely on **text → elegant image** generation and returns a local PNG path. Auto-pushing images to IM channels (WeChat / Telegram / Slack, etc.) is **not built in** — wire up your platform's Bot/API downstream if you need it (optional adapters may come in a future version).
 
