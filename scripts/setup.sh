@@ -81,8 +81,8 @@ if [[ -d "$SKILL_DIR/node_modules/puppeteer-core" ]]; then
     ok "puppeteer-core@$PKG_VER 已安装"
 else
     warn "puppeteer-core 未安装，正在安装..."
-    info "运行：npm install --omit=dev --omit=optional（在 $SKILL_DIR）"
-    cd "$SKILL_DIR" && npm install --omit=dev --omit=optional --silent
+    info "运行：npm install --omit=dev --omit=optional（在 $SKILL_DIR，安装过程输出可见）"
+    cd "$SKILL_DIR" && npm install --omit=dev --omit=optional
     PKG_VER=$(node -e "console.log(require('$SKILL_DIR/node_modules/puppeteer-core/package.json').version)" 2>/dev/null || echo "?")
     ok "puppeteer-core@$PKG_VER 安装完成"
 fi

@@ -76,7 +76,15 @@ function detectChromePath() {
     return null;
 }
 
-const htmlUrl    = inputHtml.startsWith('http') ? inputHtml : `file://${path.resolve(inputHtml)}`;
+// 仅渲染本地 HTML 文件：本 skill 的用途是「本地文本/Markdown → 图片」，
+// 不作为通用网页抓取器。历史上曾支持传 http(s):// 直接渲染远程页面，
+// 但该分支会把本工具扩成任意 URL 的无头浏览器（SSRF / 内网探测风险），
+// 且正常使用流程从不传远程 URL，故已移除，只接受本地文件路径。
+if (/^https?:\/\//i.test(inputHtml)) {
+    console.error('[ERROR] 仅支持本地 HTML 文件路径，不接受远程 URL。请先用 write 工具把内容写到本地 .html 再传入。');
+    process.exit(1);
+}
+const htmlUrl    = `file://${path.resolve(inputHtml)}`;
 const outputPath = path.resolve(outputImg);
 
 const outputDir = path.dirname(outputPath);

@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.1] - 2026-07-28
+
+### Security
+
+- **Removed remote-URL rendering branch** in `export_image.js`: the renderer previously accepted any `http(s)://` input and navigated a headless browser to it, effectively turning a local text/Markdown-to-image tool into a general-purpose web fetcher (SSRF / internal-network probing surface). It now only accepts local HTML file paths; remote URLs are rejected with a clear error. Normal usage (write content to a local `.html`, then render) is unchanged.
+- **Dependency install is no longer silent**: `setup.sh` dropped `--silent` on `npm install`, so the puppeteer-core installation is now visible. SKILL.md wording updated from "silently auto-installs, no confirmation" to "prompts and installs with visible output", removing the undocumented-side-effect concern. Behavior is otherwise identical.
+
 ## [1.2.0] - 2026-07-27
 
 ### Added

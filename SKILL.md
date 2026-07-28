@@ -8,7 +8,7 @@ description: >
 
 # Text to Elegant Image
 
-- **Version**: 1.2.0
+- **Version**: 1.2.1
 - **License**: MIT
 - **Author**: Evan Song · [github.com/Songhonglei](https://github.com/Songhonglei)
 - **Repository**: https://github.com/Songhonglei/text-to-elegant-image
@@ -172,7 +172,7 @@ bash <skill目录>/scripts/setup.sh
 - 检测 Node.js（需 >= v18）、Chrome/Chromium、puppeteer-core 三项依赖
 - 全部就绪时直接通过，输出 `✔ 所有依赖已就绪`
 - Node.js / Chrome 缺失：脚本直接报错退出（`exit 1`），提示安装缺失的依赖（Node.js >= v18 / Chrome 或 Chromium）
-- puppeteer-core 缺失：静默自动 `npm install`，无需用户确认
+- puppeteer-core 缺失：脚本会提示「正在安装...」并执行 `npm install`（安装过程输出可见，仅安装 puppeteer-core 一个渲染依赖）
 
 > 已就绪时脚本极速返回，无性能负担，建议每次调用前执行一次。
 
@@ -263,6 +263,6 @@ node <skill目录>/scripts/export_image.js \
 
 | 脚本 | 作用 |
 |------|------|
-| `scripts/setup.sh` | 依赖检测（Node/Chrome/puppeteer-core），缺 puppeteer-core 时静默安装 |
+| `scripts/setup.sh` | 依赖检测（Node/Chrome/puppeteer-core），缺 puppeteer-core 时提示并安装（输出可见） |
 | `scripts/check_emoji.py` | 截图前 emoji 检查，FAIL 时输出字符与行号 |
 | `scripts/export_image.js` | Puppeteer 截图导出：字体等待 + 高度精确裁剪 + 四边相框边距 + 卡片背景开关(--flat) + footer 注入/移除 |
