@@ -2,7 +2,14 @@
 
 > Turn Markdown or plain text into beautifully typeset, high-resolution long images (share cards / posters) — with 18 built-in visual styles.
 
+[![Live demo](https://img.shields.io/badge/live%20demo-browse%2018%20styles-7C3AED)](https://songhonglei.github.io/text-to-elegant-image/)
+[![License](https://img.shields.io/badge/license-MIT-7C3AED)](./LICENSE)
+[![Styles](https://img.shields.io/badge/styles-18-EC4899)](./resources/styles/)
+[![Node](https://img.shields.io/badge/node-%E2%89%A518-5FA04E)](#requirements)
+
 Generates a self-contained HTML file and renders it to a crisp PNG via headless Chrome (Puppeteer). Designed for AI agents (OpenClaw / Claude Code / Cursor, etc.) as a skill, but the scripts also run standalone.
+
+🎨 **[Browse all 18 styles on the project page →](https://songhonglei.github.io/text-to-elegant-image/)** — every thumbnail is a real render, and clicking one repaints the whole site in that palette.
 
 ## Features
 
@@ -99,6 +106,8 @@ See [CHANGELOG.md](./CHANGELOG.md) for details.
 ## Appendix: Style Gallery / 附录：样式画廊
 
 All 18 built-in styles, rendered from the same content. 全部 18 种内置样式（相同内容、不同样式渲染）。
+
+> 💡 Prefer an interactive view? The [project page](https://songhonglei.github.io/text-to-elegant-image/) shows the same gallery with light/dark/gradient filters — and clicking a style repaints the entire site in its palette.
 
 <table>
   <tr>
