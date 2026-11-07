@@ -30,7 +30,7 @@ if command -v node &>/dev/null; then
     NODE_VER=$(node --version)
     NODE_MAJOR=$(echo "$NODE_VER" | sed 's/v\([0-9]*\).*/\1/')
     if [[ "$NODE_MAJOR" -ge 18 ]]; then
-        ok "Node.js $NODE_VER（满足要求 >= v18）"
+        ok "Node.js ${NODE_VER}（满足要求 >= v18）"
     else
         fail "Node.js $NODE_VER 版本过低，需要 >= v18，请升级到 Node.js >= v18（https://nodejs.org）"
         exit 1
@@ -66,7 +66,7 @@ fi
 
 if [[ -n "$CHROME_PATH" ]]; then
     CHROME_VER=$("$CHROME_PATH" --version 2>/dev/null || echo "未知版本")
-    ok "已找到：$CHROME_PATH（$CHROME_VER）"
+    ok "已找到：${CHROME_PATH}（${CHROME_VER}）"
 else
     fail "未检测到 Chrome / Chromium，请先安装 Google Chrome 或 Chromium"
     exit 1
@@ -81,7 +81,7 @@ if [[ -d "$SKILL_DIR/node_modules/puppeteer-core" ]]; then
     ok "puppeteer-core@$PKG_VER 已安装"
 else
     warn "puppeteer-core 未安装，正在安装..."
-    info "运行：npm install --omit=dev --omit=optional（在 $SKILL_DIR，安装过程输出可见）"
+    info "运行：npm install --omit=dev --omit=optional（在 ${SKILL_DIR}，安装过程输出可见）"
     cd "$SKILL_DIR" && npm install --omit=dev --omit=optional
     PKG_VER=$(node -e "console.log(require('$SKILL_DIR/node_modules/puppeteer-core/package.json').version)" 2>/dev/null || echo "?")
     ok "puppeteer-core@$PKG_VER 安装完成"
